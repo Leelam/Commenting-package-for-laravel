@@ -1,0 +1,20 @@
+{
+    "name": "leelam/comments",
+    "description": "comment for articles, posts, images with bootstrap UI.",
+    "keywords": ["laravel", "comments", "bootstrap", "leelam"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Gopal Krishna Mosali",
+            "email": "krishna@leelam.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Leelam\\Comment\\": "src/"
+        }
+    },
+    "require": {
+        "illuminate/support": "~5"
+    }
+}
