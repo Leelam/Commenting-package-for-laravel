@@ -12,7 +12,10 @@ class CommentServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind('comments', function() {
+        $this->app->bind( /**
+         * @return \Leelam\Comments\Comment
+         */
+            'comments', function() {
         return new Comment;
     });
 
