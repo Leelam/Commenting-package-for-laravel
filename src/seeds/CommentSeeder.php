@@ -2,6 +2,8 @@
 
 use Illuminate\Database\Seeder;
 
+
+// We actually dont need this for testing
 class CommentSeeder extends Seeder
 {
     public function run()
