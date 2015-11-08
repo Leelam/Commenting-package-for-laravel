@@ -1,10 +1,5 @@
 <?php namespace Leelam\Comments;
 
-/**
- * User: leelam
- * Date: 28/10/15
- * Time: 2:59 AM
- */
 class Comment extends \Eloquent
 {
     /**

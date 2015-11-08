@@ -2,12 +2,6 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-/**
- * Created by PhpStorm.
- * User: leelam
- * Date: 28/10/15
- * Time: 9:59 AM
- */
 class CreateCommentsTable extends Migration
 {
     public function up()

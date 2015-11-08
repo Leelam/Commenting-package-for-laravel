@@ -1,15 +1,4 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: leelam
- * Date: 28/10/15
- * Time: 3:32 AM
- */
-
-namespace Leelam\Comment\Http;
-
-
-
+<?php namespace Leelam\Comments\Http;
 
 use Illuminate\Routing\Controller as BaseController;
 
@@ -18,7 +7,7 @@ class CommentController extends BaseController
     public function hello()
     {
         $hello = \Comment::hello() . " from views :)";
-        return view('leelam-comment::index', compact('hello') );
+        return view('comments::index', compact('hello') );
     }
 
 }

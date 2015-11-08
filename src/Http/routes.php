@@ -1,12 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: leelam
- * Date: 28/10/15
- * Time: 3:26 AM
- */
-
-
 
 Route::get('comment/test', function () {
     return config('leelam-comment-comment.hello') .
