@@ -11,16 +11,16 @@
 </head>
 <body>
 
-{{$allcomments->title}}
+{{$parentAndComments->id}}
 <hr>
 {!!  Form::open( [ 'route'=> ['commentStore'] ] ) !!}
-{!! Form::hidden('modelAndValue', Crypt::encrypt( get_class($allcomments).':'.$allcomments->id ) ) !!} {{-- TODO :: need to apply encrytion --}}
+{!! Form::hidden('modelAndValue', Crypt::encrypt( get_class($parentAndComments).':'.$parentAndComments->id ) ) !!} {{-- TODO :: need to apply encrytion --}}
 {!!Form::textarea('comment')!!}
 
 {!! Form::submit('comment') !!}
 {!!Form::close()!!}
 <hr>
-@foreach($allcomments['comments'] as $comment)
+@foreach($parentAndComments['comments'] as $comment)
 	<div class="media">
 		<a class="media-left" href="#">
 			<img class="media-object" src="{{$comment->author->avatar}}" alt="IMG from DB">
