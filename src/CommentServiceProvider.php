@@ -37,7 +37,7 @@ class CommentServiceProvider extends ServiceProvider
 
         $this->publishes([
             __DIR__ . '/views' => base_path('resources/views/vendor/leelam-comment'),
-            __DIR__ . '/config' => config_path('leelam-comment'),
+            __DIR__ . '/config' => config_path(),
         ]);
 
         $this->publishes([

@@ -1,4 +1,4 @@
-<?php namespace Leelam\Comment;
+<?php namespace Leelam\Comments;
 
 /**
  * User: leelam

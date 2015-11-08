@@ -6,12 +6,12 @@
  * Time: 3:05 AM
  */
 
-namespace Leelam\Comment;
+namespace Leelam\Comments\Facades;
 
 
 use Illuminate\Support\Facades\Facade;
 
-class CommentFacade extends Facade
+class Comment extends Facade
 {
     protected static function getFacadeAccessor() {
         return 'leelam-comment';
