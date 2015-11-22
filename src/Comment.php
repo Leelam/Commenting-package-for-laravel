@@ -41,4 +41,11 @@ class Comment extends \Eloquent
         return $this->belongsTo( config('comments.user_model'), 'user_id' )->select('full_name','id','avatar');
     }
 
+    public static function NestedComments($input, $key=0)
+    {
+        $result = collect();
+        $input->get()->each(function($item) use ($result, $key){ if($item->parent_id===$key)$result->push($item);});
+        $result->map(function($item) use ($input){$item->childs=Comment::NestedComments($input, $item->id);} );
+        return $result;
+    }
 }
