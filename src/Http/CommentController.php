@@ -1,5 +1,6 @@
 <?php namespace Leelam\Comments\Http;
 
+use DB;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\Crypt;
@@ -22,7 +23,7 @@ class CommentController extends BaseController
     public function store ( Request $request)
     {
 
-        $modelAndFindValueArray = explode(":", Crypt::decrypt($request->modelAndValue));
+        $modelAndFindValueArray = explode(":", Crypt::decrypt($request->valid));
 
         $modelInstance = $modelAndFindValueArray[0]::find($modelAndFindValueArray[1]);
 
@@ -39,4 +40,20 @@ class CommentController extends BaseController
         return redirect(\URL::previous());
     }
 
+    public function vote ( $id, $count, $type  )
+    {
+
+        if ( $type == 'up' ) {
+            $va=  DB::table ( 'comments' )
+                ->whereId ( $id )
+                ->increment ( 'up', 1 );
+
+
+        }
+        if ( $type == 'down' ) {
+            return DB::table ( 'comments' )
+                ->whereId ( $id )
+                ->increment ( 'down', 1 );
+        }
+    }
 }

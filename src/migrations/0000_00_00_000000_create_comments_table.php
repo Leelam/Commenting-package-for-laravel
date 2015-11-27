@@ -8,7 +8,7 @@ class CreateCommentsTable extends Migration
     {
         Schema::create('comments',function(Blueprint $table){
             $table->increments('id');
-            $table->unsignedInteger('parent_id')->default(null)->nullable()->comment('comment id linked to parent_id');
+            $table->unsignedInteger('parent_id')->default(0)->nullable()->comment('comment id linked to parent_id');
             $table->integer('commentable_id');
             $table->string('commentable_type');
             $table->integer('user_id');
