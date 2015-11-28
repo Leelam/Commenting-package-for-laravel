@@ -12,7 +12,10 @@
     "autoload": {
         "psr-4": {
             "Leelam\\Comments\\": "src/"
-        }
+        },
+        "files": [
+            "src/Http/helpers.php"
+        ]
     },
     "require": {
         "illuminate/support": "~5"
