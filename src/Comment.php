@@ -1,7 +1,6 @@
 <?php namespace Leelam\Comments;
 
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Collection;
 
 class Comment extends \Eloquent
 {
@@ -41,7 +40,7 @@ class Comment extends \Eloquent
      * @return mixed
      */
     public function author(){
-        return $this->belongsTo( config('comments.user_model'), 'user_id' )->select('full_name','id','avatar');
+        return $this->belongsTo( config('comments.user_model'), 'user_id' )->select('name','id','email as avatar');
     }
     public static function NestedComments($input, $key=0)
     {

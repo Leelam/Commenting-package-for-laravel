@@ -6,7 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
 	<meta id="token" name="token" value="{{ csrf_token() }}">
-	<meta id="valid" name="valid" value="{{Crypt::encrypt( 'DIMS\Models\User'.':1' ) }}">
+	<meta id="valid" name="valid" value="{{Crypt::encrypt( 'App\User'.':1' ) }}">
 	<!-- Bootstrap CSS -->
 	<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/css/bootstrap.css">
@@ -151,10 +151,12 @@
 								<label for="comment">Comment
 									<span class="error" v-if=" ! newComment.comment">*</span>
 								</label>
-								{!!Form::textarea('comment', null, ['class' => 'form-control', 'id'=>'comment', 'rows'=>'3', 'v-model' => "newComment.comment"])!!}
+								{{--{!!Form::textarea('comment', null, ['class' => 'form-control', 'id'=>'comment', 'rows'=>'3', 'v-model' => "newComment.comment"])!!}--}}
+								<textarea name="comment" id="comment" cols="30" rows="10" v-model="newComment.comment" class="form-control"></textarea>
 
 								<br>
-								{!! Form::submit('comment',['class'=>'btn btn-default', ":disabled"=>"errors"]) !!}
+								{{--{!! Form::submit('comment',['class'=>'btn btn-default', ":disabled"=>"errors"]) !!}--}}
+								<button :disabled="errors" class="btn btn-default">Comment</button>
 							</form>
 						</div>
 					</div>
@@ -191,7 +193,7 @@ I am for eaching
 			</a>
 		</div>
 
-		<div class="media-body" @click="toggle"	@dblclick="changeType">
+		<div class="media-body">
 		<h4 class="media-heading pull-left">@{{ mainData.author.full_name }}</h4>
 		<div class="pull-right">
 			<counter
@@ -247,7 +249,7 @@ I am for eaching
 
 						// this.count += 1;
 					}).error(function (data, status, request) {
-						alert( 'false returned' + data + status)
+					//	alert( 'false returned' + data + status)
 					})
 				}.bind(this),1000);
 
@@ -266,13 +268,14 @@ I am for eaching
 		data: function () {
 			return {
 				open: true,
-				indexer:0
+				indexer:0,
+				totalComments:1552
 			}
 		},
 		computed: {
 			isFolder: function () {
 				//console.log(this.indexer);
-				return  true //this.cdata[0].childs && (this.cdata[0].childs.length ); // returning
+				return  true ;//this.cdata[0].childs && (this.cdata[0].childs.length ); // returning
 				// fine
 				// but. this
 				// .child && this
@@ -306,20 +309,20 @@ I am for eaching
 
 		data:{ // shoudn't that be  ="data.childs"? no actully . got it. yaa. they
 			//	count:0,
-			totalComments:1552,
-			childs:{}, // we only need this part to export tho that component/ Only DATA Object.yes. This is also
+
+			childs:[], // we only need this part to export tho that component/ Only DATA Object.yes. This is also
 			// a work fine though
 			newComment:{
 				author:{
 					full_name:'krishna',
 					email:'krishna@leela.com'
 				},
-				comment:'Default Comment',
+				comment:'Default Commen ss t',
 				valid:document.querySelector('#valid').getAttribute('value')
 
 			},
 
-			canAccess:true
+			canAccess:false
 		},
 		computed: {
 			errors: function() {
@@ -332,23 +335,23 @@ I am for eaching
 			totalComments: function () {
 				// record length
 				//return this.childs.length;
-				//return this.childs.length; // TODO :: UPDATE Child Comments Count
+				return this.childs.length; // TODO :: UPDATE Child Comments Count
 				// return it intact
 				//	return filteredLength
 			}
 
 		},
 		ready: function () {
-			setTimeout(function() {
+			//setTimeout(function() {
 				this.fetchComments();
-			}.bind(this),1000)
+		//	}.bind(this),1000)
 
 		},
 		methods: {
 			fetchComments: function () {
 				var resource = this.$resource('/api/users/:id/:one/:two/:three');
 
-				resource.get({id:1, params:'asda'}).success(function (dataFromServer) {
+				resource.get({ id:1 }).success(function (dataFromServer) {
 					this.$set('childs', dataFromServer); // this part is main
 				}).error(function (error) {
 					console.log(error);

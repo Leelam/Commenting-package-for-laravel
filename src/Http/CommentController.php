@@ -20,6 +20,11 @@ class CommentController extends BaseController
         $this->comment = $comment;
     }
 
+    public function show($id)
+    {
+        return view('comments::index');
+    }
+
     public function store ( Request $request)
     {
 
